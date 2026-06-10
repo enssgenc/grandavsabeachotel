@@ -11,6 +11,11 @@ COPY index.html /usr/share/nginx/html/index.html
 COPY assets/ /usr/share/nginx/html/assets/
 COPY sitemap.xml /usr/share/nginx/html/sitemap.xml
 COPY robots.txt /usr/share/nginx/html/robots.txt
+COPY favicon.ico /usr/share/nginx/html/favicon.ico
+COPY favicon.svg /usr/share/nginx/html/favicon.svg
+COPY favicon-512.png /usr/share/nginx/html/favicon-512.png
+COPY apple-touch-icon.png /usr/share/nginx/html/apple-touch-icon.png
+COPY site.webmanifest /usr/share/nginx/html/site.webmanifest
 
 EXPOSE 80
 
