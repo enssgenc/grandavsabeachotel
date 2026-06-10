@@ -210,6 +210,17 @@ section{padding:90px 0}
 .lb-prev{left:26px;top:50%;transform:translateY(-50%)}
 .lb-next{right:26px;top:50%;transform:translateY(-50%)}
 
+/* ---------- Video Tur ---------- */
+.video-tour{background:var(--bg-alt)}
+.video-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:60px;align-items:center}
+.video-copy p{margin-top:18px;color:var(--muted);font-size:1.02rem}
+.video-copy .about-list{margin-top:26px}
+.video-actions{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+.reel-stage{display:flex;justify-content:center}
+.reel-frame{position:relative;width:min(330px,82%);aspect-ratio:9/16;border-radius:32px;overflow:hidden;background:var(--ink);border:7px solid var(--ink);box-shadow:0 34px 72px rgba(13,36,51,.34)}
+.reel-frame video{width:100%;height:100%;object-fit:cover;display:block;background:var(--ink)}
+.reel-frame::after{content:"";position:absolute;top:14px;left:50%;transform:translateX(-50%);width:54px;height:5px;border-radius:999px;background:rgba(255,255,255,.35);z-index:2;pointer-events:none}
+
 /* ---------- Konum ---------- */
 .location-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
 .loc-card{background:var(--white);border-radius:18px;padding:26px;box-shadow:0 16px 36px rgba(13,36,51,.08);margin-top:26px;display:grid;gap:18px}
@@ -251,7 +262,9 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
   .strip-grid{grid-template-columns:repeat(2,1fr);row-gap:34px}
   .rooms-grid{grid-template-columns:repeat(2,1fr)}
   .amen-grid{grid-template-columns:repeat(3,1fr)}
-  .about-grid,.location-grid{grid-template-columns:1fr;gap:44px}
+  .about-grid,.location-grid,.video-grid{grid-template-columns:1fr;gap:44px}
+  .video-grid{gap:40px}
+  .reel-frame{width:min(300px,72%)}
   .about-media .photo img{height:420px}
   .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px}
 }
@@ -295,6 +308,7 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
       <a href="#odalar">Odalar</a>
       <a href="#olanaklar">Olanaklar</a>
       <a href="#galeri">Galeri</a>
+      <a href="#video">Video</a>
       <a href="#konum">Konum</a>
     </nav>
     <a class="btn btn-primary" href="#rezervasyon">Rezervasyon</a>
@@ -452,6 +466,33 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
   </div>
 </section>
 
+<!-- VIDEO TUR -->
+<section class="video-tour" id="video">
+  <div class="container video-grid">
+    <div class="video-copy reveal">
+      <span class="sec-kicker">Video Tur</span>
+      <h2 class="sec-title">Avşa'da bir günü <em>izleyin</em></h2>
+      <p>Odalarımızdan terasa, sahil girişinden gün batımına… Grand Avşa Hotel'in atmosferini birkaç dakikada hissedin.</p>
+      <ul class="about-list">
+        <li>Deniz kenarında konum ve sahil girişi</li>
+        <li>Restoran, teras ve konforlu odalardan kareler</li>
+        <li>Adanın yaz ritmini yerinde görün</li>
+      </ul>
+      <div class="video-actions">
+        <a class="btn btn-primary" href="#rezervasyon">Müsaitlik Sorun</a>
+      </div>
+    </div>
+    <div class="reel-stage reveal reveal-d1">
+      <div class="reel-frame">
+        <video id="reelVideo" playsinline muted loop preload="none" poster="assets/video/grandavsa-poster.jpg" controls aria-label="Grand Avşa Hotel tanıtım videosu">
+          <source src="assets/video/grandavsaotel.mp4" type="video/mp4">
+          Tarayıcınız video oynatmayı desteklemiyor.
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- KONUM -->
 <section id="konum">
   <div class="container location-grid">
@@ -581,6 +622,7 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
           <li><a href="#odalar">Odalar</a></li>
           <li><a href="#olanaklar">Olanaklar</a></li>
           <li><a href="#galeri">Galeri</a></li>
+          <li><a href="#video">Video Tur</a></li>
         </ul>
       </div>
       <div>
@@ -742,6 +784,18 @@ addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') show(current - 1);
   if (e.key === 'ArrowRight') show(current + 1);
 });
+
+// Video tur — bölüm görünür olunca sessiz oynat, ekrandan çıkınca duraklat
+const reel = document.getElementById('reelVideo');
+if (reel && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const reelIo = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) reel.play().catch(() => {});
+      else reel.pause();
+    });
+  }, { threshold: .4 });
+  reelIo.observe(reel);
+}
 </script>
 </body>
 </html>
