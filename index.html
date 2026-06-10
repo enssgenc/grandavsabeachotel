@@ -32,7 +32,17 @@ src="https://www.facebook.com/tr?id=3091009471097173&ev=PageView&noscript=1"/></
 <meta property="og:description" content="Avşa'nın sahil hattında, restoranı, terası ve konforlu odalarıyla ada tatilinin sakin ve samimi adresi.">
 <meta property="og:url" content="https://grandavsabeachotel.com/">
 <meta property="og:image" content="https://grandavsabeachotel.com/assets/img/hotel-3.jpeg">
+<meta property="og:image:alt" content="Grand Avşa Hotel — Avşa Adası sahili">
+<meta property="og:image:width" content="2160">
+<meta property="og:image:height" content="1440">
+<meta property="og:site_name" content="Grand Avşa Hotel">
 <meta property="og:locale" content="tr_TR">
+<!-- Twitter / X kartları -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Grand Avşa Hotel — Avşa Adası'nda Deniz Kenarında Tatil">
+<meta name="twitter:description" content="Avşa'nın sahil hattında, restoranı, terası ve konforlu odalarıyla ada tatilinin sakin ve samimi adresi.">
+<meta name="twitter:image" content="https://grandavsabeachotel.com/assets/img/hotel-3.jpeg">
+<meta name="twitter:image:alt" content="Grand Avşa Hotel — Avşa Adası sahili">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -257,6 +267,17 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
 .footer-links a:hover{color:var(--sand)}
 .footer-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:26px;font-size:.78rem;color:rgba(233,223,207,.45)}
 
+/* ---------- SSS ---------- */
+.faq{background:var(--bg-alt)}
+.faq-list{margin-top:42px;display:grid;gap:14px;max-width:840px}
+.faq-item{background:var(--white);border:1px solid rgba(13,36,51,.08);border-radius:14px;overflow:hidden;transition:box-shadow .35s var(--ease)}
+.faq-item[open]{box-shadow:0 16px 36px rgba(13,36,51,.1)}
+.faq-item summary{cursor:pointer;list-style:none;padding:20px 24px;font-family:var(--font-display);font-weight:500;font-size:1.08rem;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:18px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";font-family:var(--font-body);font-size:1.5rem;line-height:1;color:var(--teal);transition:transform .3s var(--ease);flex:0 0 auto}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item p{padding:0 24px 22px;color:var(--muted);font-size:.96rem;line-height:1.75}
+
 /* ---------- Responsive ---------- */
 @media (max-width:1024px){
   .contact-grid{grid-template-columns:1fr;gap:40px}
@@ -296,6 +317,60 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
   .reveal{opacity:1;transform:none}
 }
 </style>
+<!-- Yapısal veri: Hotel + VideoObject + FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Hotel",
+      "@id": "https://grandavsabeachotel.com/#hotel",
+      "name": "Grand Avşa Hotel",
+      "url": "https://grandavsabeachotel.com/",
+      "image": "https://grandavsabeachotel.com/assets/img/hotel-3.jpeg",
+      "description": "Avşa Adası'nın sahil hattında; restoranı, terası ve konforlu odalarıyla samimi bir ada oteli.",
+      "telephone": "+905071180266",
+      "priceRange": "₺₺",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Manastır Cd. No:42",
+        "addressLocality": "Avşa Adası, Marmara",
+        "addressRegion": "Balıkesir",
+        "postalCode": "10940",
+        "addressCountry": "TR"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 40.50459, "longitude": 27.49342 },
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Ücretsiz Wi-Fi", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Otopark", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Restoran", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "24 Saat Resepsiyon", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Plaj Hizmeti", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Oda Servisi", "value": true }
+      ]
+    },
+    {
+      "@type": "VideoObject",
+      "name": "Grand Avşa Hotel Tanıtım Videosu",
+      "description": "Grand Avşa Hotel ve Avşa Adası sahilinden kareler — odalar, teras ve deniz.",
+      "thumbnailUrl": "https://grandavsabeachotel.com/assets/video/grandavsa-poster.jpg",
+      "contentUrl": "https://grandavsabeachotel.com/assets/video/grandavsaotel.mp4",
+      "uploadDate": "2026-06-10",
+      "duration": "PT54S"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Grand Avşa Hotel nerede?", "acceptedAnswer": { "@type": "Answer", "text": "Otel, Avşa Adası'nda Manastır Cd. No:42 (10940 Avşa, Balıkesir) adresinde; sahile birkaç adım, çarşı ve iskeleye yürüme mesafesindedir." } },
+        { "@type": "Question", "name": "Avşa Adası'na nasıl gidilir?", "acceptedAnswer": { "@type": "Answer", "text": "İstanbul Yenikapı veya Bostancı'dan kalkan deniz otobüsleriyle yaklaşık 2 saatte Avşa İskelesi'ne ulaşılır. Tekirdağ veya Erdek üzerinden arabalı vapurla da adaya geçilebilir." } },
+        { "@type": "Question", "name": "Otelde otopark var mı?", "acceptedAnswer": { "@type": "Answer", "text": "Evet. Araçla gelen misafirlerimiz için tesise ait otopark alanı bulunmaktadır." } },
+        { "@type": "Question", "name": "Odalarda hangi olanaklar var?", "acceptedAnswer": { "@type": "Answer", "text": "Tüm odalarda klima, düz ekran/uydu TV, buzdolabı ve ücretsiz kablosuz internet standarttır. Balkonlu oda seçenekleri mevcuttur." } },
+        { "@type": "Question", "name": "Rezervasyon nasıl yapılır?", "acceptedAnswer": { "@type": "Answer", "text": "Site üzerindeki rezervasyon formunu doldurarak, 0507 118 02 66 numaralı telefondan veya WhatsApp üzerinden rezervasyon talebi oluşturabilirsiniz." } }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -529,6 +604,38 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
   </div>
 </section>
 
+<!-- SIKÇA SORULAN SORULAR -->
+<section class="faq" id="sss">
+  <div class="container">
+    <div class="reveal">
+      <span class="sec-kicker">Sıkça Sorulanlar</span>
+      <h2 class="sec-title">Merak edilen <em>sorular</em></h2>
+    </div>
+    <div class="faq-list reveal reveal-d1">
+      <details class="faq-item">
+        <summary>Grand Avşa Hotel nerede?</summary>
+        <p>Otel, Avşa Adası'nda Manastır Cd. No:42 (10940 Avşa, Balıkesir) adresinde; sahile birkaç adım, çarşı ve iskeleye yürüme mesafesindedir.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Avşa Adası'na nasıl gidilir?</summary>
+        <p>İstanbul Yenikapı veya Bostancı'dan kalkan deniz otobüsleriyle yaklaşık 2 saatte Avşa İskelesi'ne ulaşılır. Tekirdağ veya Erdek üzerinden arabalı vapurla da adaya geçilebilir.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Otelde otopark var mı?</summary>
+        <p>Evet. Araçla gelen misafirlerimiz için tesise ait otopark alanı bulunmaktadır.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Odalarda hangi olanaklar var?</summary>
+        <p>Tüm odalarda klima, düz ekran/uydu TV, buzdolabı ve ücretsiz kablosuz internet standarttır. Balkonlu oda seçenekleri mevcuttur.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Rezervasyon nasıl yapılır?</summary>
+        <p>Site üzerindeki rezervasyon formunu doldurarak, <a href="tel:+905071180266" style="color:var(--teal-deep);font-weight:700">0507 118 02 66</a> numaralı telefondan veya WhatsApp üzerinden rezervasyon talebi oluşturabilirsiniz.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- REZERVASYON / İLETİŞİM FORMU -->
 <div class="container" id="rezervasyon">
   <div class="contact reveal">
@@ -625,6 +732,7 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
           <li><a href="#olanaklar">Olanaklar</a></li>
           <li><a href="#galeri">Galeri</a></li>
           <li><a href="#video">Video Tur</a></li>
+          <li><a href="#sss">Sıkça Sorulanlar</a></li>
         </ul>
       </div>
       <div>
