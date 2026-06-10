@@ -4,6 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="facebook-domain-verification" content="ihfuaxjaka3qh5ro3sclz9b9eadqm4" />
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','3091009471097173');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=3091009471097173&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
 <title>Grand Avşa Hotel — Avşa Adası'nda Deniz Kenarında Tatil</title>
 <meta name="description" content="Grand Avşa Hotel — Avşa Adası'nın sahil hattında, restoranı, terası ve konforlu odalarıyla Marmara'nın saklı cennetinde tatilin adresi.">
 <link rel="canonical" href="https://grandavsabeachotel.com/">
@@ -610,6 +623,22 @@ const io = new IntersectionObserver(entries => {
 }, {threshold: .15});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
+// Meta Pixel — ViewContent (odalar bölümü görüntülenince, bir kez)
+const fbq = (...a) => { if (window.fbq) window.fbq(...a); };
+const cookie = n => (document.cookie.match('(^|;)\\s*' + n + '\\s*=\\s*([^;]+)') || [])[2] || null;
+const odalarSec = document.getElementById('odalar');
+if (odalarSec) {
+  const vcIo = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        fbq('track', 'ViewContent', { content_type: 'hotel_room', content_name: 'Odalar', content_category: 'Grand Avşa Hotel' });
+        vcIo.disconnect();
+      }
+    });
+  }, { threshold: .3 });
+  vcIo.observe(odalarSec);
+}
+
 // Rezervasyon talebi formu — rezervasyonpro public-leads API
 const PUBLIC_LEADS_URL = 'https://rezervasyonpro.hoteldijital.com/api/public-leads';
 const SITE_KEY = 'grandavsa';
@@ -636,6 +665,9 @@ leadForm.addEventListener('submit', async e => {
     setLeadStatus('⚠ Çıkış tarihi giriş tarihinden sonra olmalı.', 'err');
     return;
   }
+  // Meta dedup için tarayıcı ve sunucu (CAPI) aynı event_id'yi kullanır
+  const eventId = (crypto.randomUUID && crypto.randomUUID()) ||
+    ('lead-' + Date.now() + '-' + Math.random().toString(16).slice(2));
   const payload = {
     siteKey: SITE_KEY,
     fullName: leadForm.fullName.value.trim(),
@@ -651,8 +683,19 @@ leadForm.addEventListener('submit', async e => {
     sourceHotelSlug: 'grand-avsa-hotel',
     pageUrl: window.location.href.slice(0, 800),
     pageTitle: document.title.slice(0, 240),
-    referrer: (document.referrer || '').slice(0, 800) || null
+    referrer: (document.referrer || '').slice(0, 800) || null,
+    // Meta CAPI alanları (sunucu taraflı Lead eventi için)
+    eventId,
+    fbp: cookie('_fbp'),
+    fbc: cookie('_fbc'),
+    eventSourceUrl: window.location.href.slice(0, 800)
   };
+
+  // Tarayıcı Pixel'i — Lead (sunucu CAPI ile aynı eventID → dedup)
+  fbq('track', 'Lead', {
+    content_name: 'Rezervasyon talebi',
+    content_category: 'Grand Avşa Hotel'
+  }, { eventID: eventId });
 
   lfSubmit.disabled = true;
   setLeadStatus('Gönderiliyor…', '');
