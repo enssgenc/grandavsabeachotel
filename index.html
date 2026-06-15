@@ -1077,6 +1077,12 @@ leadForm.addEventListener('submit', async e => {
     const data = await r.json().catch(() => ({}));
     if (!r.ok) throw new Error(data.error || 'Gönderim başarısız oldu.');
     setLeadStatus('✓ Talebiniz alındı. Resepsiyonumuz en kısa sürede size dönüş yapacaktır.', 'ok');
+    // Google Ads — Potansiyel müşteri formu gönderimi conversion (yalnızca başarılı gönderimde tetiklenir)
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18241101971/m2zsCKzW5r8cEJPBhPpD',
+      'value': 1.0,
+      'currency': 'TRY'
+    });
     leadForm.reset();
   } catch (err) {
     setLeadStatus('⚠ ' + (err.message || 'Bir sorun oluştu, lütfen tekrar deneyin.'), 'err');
