@@ -443,6 +443,7 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
     <nav class="nav-links" id="navLinks">
       <a href="#otel">Otel</a>
       <a href="#odalar">Odalar</a>
+      <a href="#fiyat-hesapla">Fiyat</a>
       <a href="#olanaklar">Olanaklar</a>
       <a href="#galeri">Galeri</a>
       <a href="#video">Video</a>
@@ -563,6 +564,64 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
           <div class="room-feats"><span>Klima</span><span>Balkon</span><span>Düz Ekran TV</span><span>Buzdolabı</span></div>
         </div>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- FİYAT HESAPLAMA (rezervasyonpro canlı fiyat) -->
+<style>
+  #fiyat-hesapla{background:var(--bg-alt)}
+  .calc-head{max-width:760px;margin-bottom:36px}
+  .calc-head p{margin-top:14px;color:var(--muted);font-size:1.02rem;line-height:1.7}
+  .calc-card{background:var(--white);border-radius:20px;box-shadow:0 24px 50px rgba(13,36,51,.14);padding:30px}
+  .calc-card .lead-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:22px 26px}
+  .calc-card .field.full{grid-column:1/-1}
+  .calc-card .field small{display:block;margin-top:7px;font-size:.72rem;letter-spacing:0;text-transform:none;font-weight:600;color:var(--muted)}
+  .calc-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:24px}
+  .calc-results{display:grid;gap:13px;margin-top:26px}
+  .calc-note{font-size:.82rem;color:var(--muted);font-weight:600;margin-bottom:2px}
+  .calc-rt-group{font-family:var(--font-display);font-size:1.12rem;color:var(--ink);margin:10px 2px 0}
+  .price-card{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;background:var(--white);border:1px solid var(--bg-alt);border-left:4px solid var(--teal);border-radius:16px;box-shadow:0 14px 32px rgba(13,36,51,.10);padding:18px 22px}
+  .price-card .pc-info h4{font-family:var(--font-display);font-weight:500;font-size:1.1rem;color:var(--ink)}
+  .price-card .pc-pkg{display:inline-block;margin-top:6px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--teal-deep);background:rgba(47,154,166,.12);padding:4px 12px;border-radius:999px}
+  .price-card .pc-cta{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+  .price-card .pc-amount{font-family:var(--font-display);font-size:1.55rem;color:var(--teal-deep);line-height:1}
+  .price-card .pc-sub{font-size:.76rem;color:var(--muted)}
+  .price-card .btn{margin-top:7px;padding:11px 22px;font-size:.7rem}
+  .lf-quote{background:rgba(47,154,166,.12);border:1px solid rgba(47,154,166,.32);border-radius:14px;padding:13px 16px;margin-bottom:18px;font-size:.92rem;color:var(--ink);line-height:1.55}
+  .lf-quote strong{color:var(--teal-deep)}
+  @media(max-width:560px){.price-card .pc-cta{text-align:left;align-items:flex-start}}
+</style>
+<section id="fiyat-hesapla">
+  <div class="container">
+    <div class="reveal calc-head">
+      <span class="sec-kicker">Online Fiyat</span>
+      <h2 class="sec-title">Tarih ve kişi seçin, <em>anında fiyat</em> görün</h2>
+      <p>Grand Avşa Hotel için güncel oda ve pansiyon fiyatları anında listelenir; beğendiğiniz seçenek için tek tıkla rezervasyon talebi oluşturursunuz. 0-6 yaş çocuklar ücretsizdir.</p>
+    </div>
+    <div class="reveal reveal-d1">
+      <form class="calc-card" id="calcForm" novalidate>
+        <div class="lead-grid">
+          <div class="field"><label for="cIn">Giriş Tarihi</label><input type="date" id="cIn"></div>
+          <div class="field"><label for="cOut">Çıkış Tarihi</label><input type="date" id="cOut"></div>
+          <div class="field"><label for="cAd">Yetişkin</label>
+            <select id="cAd"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select>
+          </div>
+          <div class="field"><label for="cCh">Çocuk</label>
+            <select id="cCh"><option value="0" selected>Çocuk yok</option><option value="1">1 Çocuk</option><option value="2">2 Çocuk</option><option value="3">3 Çocuk</option></select>
+          </div>
+          <div class="field full" id="cAgesWrap" hidden>
+            <label for="cAges">Çocuk yaşları</label>
+            <input id="cAges" placeholder="Örn. 4, 8" autocomplete="off">
+            <small>Yaşları virgülle yazın. 0-6 yaş ücretsiz; fiyat yaşa göre hesaplanır.</small>
+          </div>
+        </div>
+        <div class="calc-actions">
+          <button class="btn btn-primary" type="submit" id="cSubmit">Fiyatları Getir</button>
+          <p class="lead-status" id="cStatus" role="status"></p>
+        </div>
+      </form>
+      <div class="calc-results" id="calcResults" hidden></div>
     </div>
   </div>
 </section>
@@ -876,6 +935,7 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
       </div>
       <form class="lead-card" id="leadForm" novalidate>
         <h3>Rezervasyon Talebi Gönderin</h3>
+        <div class="lf-quote" id="lfQuote" hidden></div>
         <div class="lead-grid">
           <div class="field full">
             <label for="lfName">Ad Soyad *</label>
@@ -1048,6 +1108,7 @@ if (odalarSec) {
 // Rezervasyon talebi formu — rezervasyonpro public-leads API
 const PUBLIC_LEADS_URL = 'https://rezervasyonpro.hoteldijital.com/api/public-leads';
 const SITE_KEY = 'grandavsa';
+let selectedQuote = null; // fiyat hesaplayicidan secilen teklif (varsa lead'e eklenir → leadler sekmesinde tutar gorunur)
 const leadForm = document.getElementById('leadForm');
 const lfStatus = document.getElementById('lfStatus');
 const lfSubmit = document.getElementById('lfSubmit');
@@ -1084,7 +1145,7 @@ leadForm.addEventListener('submit', async e => {
     checkOut: co || null,
     adults: parseInt(leadForm.adults.value, 10),
     children: parseInt(leadForm.children.value, 10),
-    subject: 'Rezervasyon talebi (web sitesi formu)',
+    subject: selectedQuote ? 'Fiyat hesaplama talebi (web sitesi)' : 'Rezervasyon talebi (web sitesi formu)',
     sourceHotelName: 'Grand Avşa Hotel',
     sourceHotelSlug: 'grand-avsa-hotel',
     pageUrl: window.location.href.slice(0, 800),
@@ -1094,7 +1155,15 @@ leadForm.addEventListener('submit', async e => {
     eventId,
     fbp: cookie('_fbp'),
     fbc: cookie('_fbc'),
-    eventSourceUrl: window.location.href.slice(0, 800)
+    eventSourceUrl: window.location.href.slice(0, 800),
+    // Fiyat hesaplayicidan teklif secildiyse → leadler sekmesinde tutar gorunur
+    ...(selectedQuote ? {
+      quotedPrice: selectedQuote.total,
+      quotedCurrency: 'TRY',
+      quoteRoomLabel: selectedQuote.roomLabel,
+      quoteNights: selectedQuote.nights,
+      childAges: (selectedQuote.childAges && selectedQuote.childAges.length) ? selectedQuote.childAges : undefined
+    } : {})
   };
 
   // Tarayıcı Pixel'i — Lead (sunucu CAPI ile aynı eventID → dedup)
@@ -1121,6 +1190,8 @@ leadForm.addEventListener('submit', async e => {
       'currency': 'TRY'
     });
     leadForm.reset();
+    selectedQuote = null;
+    const _lq = document.getElementById('lfQuote'); if (_lq) { _lq.hidden = true; _lq.innerHTML = ''; }
   } catch (err) {
     setLeadStatus('⚠ ' + (err.message || 'Bir sorun oluştu, lütfen tekrar deneyin.'), 'err');
     lfSubmit.disabled = false;
@@ -1128,6 +1199,94 @@ leadForm.addEventListener('submit', async e => {
   }
   lfSubmit.disabled = false;
 });
+
+// ── Online fiyat hesaplama (rezervasyonpro public-pricing → grand-avsa-otel) ──
+(function(){
+  const PRICING_URL = 'https://rezervasyonpro.hoteldijital.com/api/public-pricing';
+  const HOTEL_SLUG = 'grand-avsa-otel';
+  const f = document.getElementById('calcForm');
+  if (!f) return;
+  const cIn = document.getElementById('cIn'), cOut = document.getElementById('cOut');
+  const cAd = document.getElementById('cAd'), cCh = document.getElementById('cCh');
+  const cAgesWrap = document.getElementById('cAgesWrap'), cAges = document.getElementById('cAges');
+  const cStatus = document.getElementById('cStatus'), cSubmit = document.getElementById('cSubmit');
+  const out = document.getElementById('calcResults');
+  cIn.min = today; cOut.min = today;
+  const fmt = n => Number(n).toLocaleString('tr-TR');
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const setS = (m, k) => { cStatus.textContent = m || ''; cStatus.className = 'lead-status ' + (k || ''); };
+  cIn.addEventListener('change', () => { cOut.min = cIn.value || today; });
+  cCh.addEventListener('change', () => { cAgesWrap.hidden = Number(cCh.value) === 0; if (cAgesWrap.hidden) cAges.value = ''; });
+
+  f.addEventListener('submit', async e => {
+    e.preventDefault();
+    setS(''); out.hidden = true; out.innerHTML = '';
+    const ci = cIn.value, co = cOut.value, ad = parseInt(cAd.value, 10), ch = parseInt(cCh.value, 10);
+    if (!ci || !co) { setS('⚠ Giriş ve çıkış tarihi seçin.', 'err'); return; }
+    if (co <= ci) { setS('⚠ Çıkış tarihi girişten sonra olmalı.', 'err'); return; }
+    let ages = [];
+    if (ch > 0) {
+      ages = (cAges.value.match(/\d+/g) || []).map(Number);
+      if (ages.length !== ch || ages.some(a => a < 0 || a > 17)) { setS('⚠ Çocuk yaşlarını çocuk sayısı kadar ve 0-17 arası girin (örn. 4, 8).', 'err'); return; }
+    }
+    cSubmit.disabled = true; setS('Hesaplanıyor…', '');
+    try {
+      const r = await fetch(PRICING_URL, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ siteKey: SITE_KEY, hotelSlug: HOTEL_SLUG, checkIn: ci, checkOut: co, adults: ad, childAges: ages })
+      });
+      const data = await r.json().catch(() => ({}));
+      if (!data || !data.available || !Array.isArray(data.rooms) || !data.rooms.length) {
+        setS('⚠ ' + ((data && data.reason) || 'Seçilen tarih ve kişi sayısı için uygun oda bulunamadı.'), 'err');
+        cSubmit.disabled = false; return;
+      }
+      setS('');
+      renderResults(data, { ci, co, ad, ch, ages });
+      out.hidden = false;
+      out.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } catch (err) {
+      setS('⚠ Fiyat şu anda alınamadı. Lütfen tekrar deneyin.', 'err');
+    }
+    cSubmit.disabled = false;
+  });
+
+  function renderResults(data, q) {
+    const nights = data.nights || 0;
+    const byRt = {};
+    data.rooms.forEach(room => { (byRt[room.roomTypeLabel] = byRt[room.roomTypeLabel] || []).push(room); });
+    let html = '<div class="calc-note">' + nights + ' gece · ' + q.ad + ' yetişkin' + (q.ch ? ' + ' + q.ch + ' çocuk' : '') + ' için toplam fiyatlar:</div>';
+    Object.keys(byRt).forEach(rt => {
+      html += '<div class="calc-rt-group">' + esc(rt) + '</div>';
+      byRt[rt].forEach(room => {
+        const pkg = (room.packageLabel || '').split(' - ').pop();
+        const roomLabel = rt + (pkg ? ' · ' + pkg : '');
+        html += '<div class="price-card"><div class="pc-info"><h4>' + esc(rt) + '</h4>' +
+          (pkg ? '<span class="pc-pkg">' + esc(pkg) + '</span>' : '') + '</div>' +
+          '<div class="pc-cta"><div class="pc-amount">' + fmt(room.total) + ' ₺</div>' +
+          '<div class="pc-sub">~' + fmt(room.perNight) + ' ₺/gece · ' + nights + ' gece</div>' +
+          '<button type="button" class="btn btn-primary" data-total="' + room.total + '" data-room="' + esc(roomLabel) + '" data-nights="' + nights + '">Bu fiyatla talep et</button></div></div>';
+      });
+    });
+    out.innerHTML = html;
+    out.querySelectorAll('button[data-total]').forEach(b => b.addEventListener('click', () => pickQuote(b, q)));
+  }
+
+  function pickQuote(b, q) {
+    const total = Number(b.dataset.total), nights = Number(b.dataset.nights), roomLabel = b.dataset.room;
+    selectedQuote = { total, roomLabel, nights, childAges: q.ages };
+    const setV = (id, v) => { const el = document.getElementById(id); if (el) el.value = v; };
+    setV('lfCheckin', q.ci); setV('lfCheckout', q.co);
+    const lfAd = document.getElementById('lfAdults'); if (lfAd) lfAd.value = String(Math.min(Math.max(q.ad, 1), 5));
+    const lfCh = document.getElementById('lfChildren'); if (lfCh) lfCh.value = String(Math.min(q.ch, 3));
+    const lfMsg = document.getElementById('lfMessage');
+    if (lfMsg && !lfMsg.value.trim()) lfMsg.value = roomLabel + ' — ' + nights + ' gece, ' + fmt(total) + ' ₺ teklif ile rezervasyon talebi.';
+    const lq = document.getElementById('lfQuote');
+    if (lq) { lq.hidden = false; lq.innerHTML = 'Seçilen teklif: <strong>' + esc(roomLabel) + '</strong> · ' + nights + ' gece · <strong>' + fmt(total) + ' ₺</strong>'; }
+    const rez = document.getElementById('rezervasyon');
+    if (rez) rez.scrollIntoView({ behavior: 'smooth' });
+    const nameEl = document.getElementById('lfName'); if (nameEl) setTimeout(() => nameEl.focus(), 500);
+  }
+})();
 
 // Lightbox
 const images = [...document.querySelectorAll('.g-item img')].map(i => i.src);
