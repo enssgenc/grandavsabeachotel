@@ -348,12 +348,11 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
 .gsum-link:hover{text-decoration:underline}
 .gstar-full{fill:#fbbc04}
 .gstar-empty{fill:rgba(13,36,51,.16)}
-.reviews-grid{display:flex;gap:22px;margin-top:46px;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding:10px 2px 18px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.45) rgba(255,255,255,.12)}
-.reviews-grid::-webkit-scrollbar{height:8px}
-.reviews-grid::-webkit-scrollbar-track{background:rgba(255,255,255,.12);border-radius:10px}
-.reviews-grid::-webkit-scrollbar-thumb{background:rgba(255,255,255,.34);border-radius:10px}
-.reviews-grid::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.55)}
-.review-card{flex:0 0 calc((100% - 44px)/3);scroll-snap-align:start;background:var(--white);color:var(--text);border-radius:18px;padding:26px 24px;display:flex;flex-direction:column;gap:13px;box-shadow:0 18px 42px rgba(0,0,0,.22);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.reviews-marquee{margin-top:46px;overflow:hidden;padding:10px 0 18px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.reviews-track{display:flex;gap:22px;width:max-content;animation:reviewsScroll 70s linear infinite;will-change:transform}
+.reviews-marquee:hover .reviews-track{animation-play-state:paused}
+@keyframes reviewsScroll{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 11px))}}
+.review-card{flex:0 0 clamp(280px,80vw,360px);width:clamp(280px,80vw,360px);background:var(--white);color:var(--text);border-radius:18px;padding:26px 24px;display:flex;flex-direction:column;gap:13px;box-shadow:0 18px 42px rgba(0,0,0,.22);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
 .review-card:hover{transform:translateY(-6px);box-shadow:0 26px 54px rgba(0,0,0,.3)}
 .rev-top{display:flex;align-items:center;gap:13px}
 .rev-avatar{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:600;font-size:1.18rem;color:#fff;flex-shrink:0}
@@ -365,9 +364,8 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
 .rev-stars svg{width:16px;height:16px}
 .rev-text{color:var(--text);font-size:.94rem;line-height:1.7}
 .rev-date{color:var(--muted);font-size:.79rem;margin-top:auto}
-@media (max-width:1024px){.review-card{flex-basis:calc((100% - 22px)/2)}}
 @media (max-width:720px){
-  .review-card{flex-basis:86%}
+  .reviews-track{animation-duration:48s}
   .gsum-divider{display:none}
   .greviews-summary{gap:18px;padding:22px 24px}
   .gsum-meta{text-align:center;align-items:center}
@@ -375,6 +373,7 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
+  .reviews-marquee{overflow-x:auto;-webkit-overflow-scrolling:touch}
 }
 </style>
 <!-- Yapısal veri: Hotel + VideoObject + FAQPage -->
@@ -635,7 +634,9 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
     </div>
     <div class="amen-grid">
       <div class="amen-card reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18M5 11V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4M4 11v8m16-8v8M2 19h20"/></svg><h3>Restoran</h3><p>Gün boyu açık restoranda ada lezzetleri ve ev yapımı tatlar.</p></div>
-      <div class="amen-card reveal reveal-d1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><h3>24 Saat Resepsiyon</h3><p>Danışma ve oda servisi günün her saati hizmetinizde.</p></div>
+      <div class="amen-card reveal reveal-d1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8zM17 8h1.5a2.5 2.5 0 0 1 0 5H17M7 2c-.4.7-.4 1.3 0 2M11 2c-.4.7-.4 1.3 0 2M15 2c-.4.7-.4 1.3 0 2"/></svg><h3>Sabah Kahvaltısı</h3><p>Zengin serpme kahvaltıyla güne ada lezzetleriyle başlayın.</p></div>
+      <div class="amen-card reveal reveal-d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v7a3 3 0 0 1-6 0V3M5 3v18M21 3c-1.7 0-3 2.2-3 5s1.3 5 3 5m0 0v7"/></svg><h3>Akşam Yemeği</h3><p>Terasta ev yapımı menüyle keyifli akşam yemeği seçeneği.</p></div>
+      <div class="amen-card reveal reveal-d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><h3>24 Saat Resepsiyon</h3><p>Danışma ve oda servisi günün her saati hizmetinizde.</p></div>
       <div class="amen-card reveal reveal-d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a10 10 0 0 1 14 0M8.5 16.5a5 5 0 0 1 7 0M12 20h.01"/></svg><h3>Ücretsiz Wi-Fi</h3><p>Odalar dahil tüm tesiste kablosuz internet erişimi.</p></div>
       <div class="amen-card reveal reveal-d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17h6M5 17a2 2 0 0 1-2-2v-3l2-5a2 2 0 0 1 2-1h10a2 2 0 0 1 2 1l2 5v3a2 2 0 0 1-2 2M7.5 13h.01M16.5 13h.01"/><path d="M5 17v2m14-2v2"/></svg><h3>Otopark</h3><p>Araçla gelen misafirlerimiz için tesise ait park alanı.</p></div>
       <div class="amen-card reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3m12.4-6.4-2.1 2.1M21 12h-3M7 19a5 5 0 0 1 10 0z"/></svg><h3>Plaj Hizmeti</h3><p>Havuz ve plaj alanlarında havlu, güneş şemsiyesi keyfi.</p></div>
@@ -753,8 +754,9 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
       </div>
     </div>
 
-    <div class="reviews-grid">
-      <article class="review-card reveal">
+    <div class="reviews-marquee reveal">
+     <div class="reviews-track" id="reviewsTrack">
+      <article class="review-card">
         <div class="rev-top">
           <span class="rev-avatar" style="background:#1a73e8">M</span>
           <span class="rev-id">
@@ -774,7 +776,7 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
         <span class="rev-date">Ağustos 2025</span>
       </article>
 
-      <article class="review-card reveal reveal-d1">
+      <article class="review-card">
         <div class="rev-top">
           <span class="rev-avatar" style="background:#d93025">Z</span>
           <span class="rev-id">
@@ -794,7 +796,7 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
         <span class="rev-date">Temmuz 2025</span>
       </article>
 
-      <article class="review-card reveal reveal-d2">
+      <article class="review-card">
         <div class="rev-top">
           <span class="rev-avatar" style="background:#188038">E</span>
           <span class="rev-id">
@@ -814,7 +816,7 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
         <span class="rev-date">Eylül 2025</span>
       </article>
 
-      <article class="review-card reveal">
+      <article class="review-card">
         <div class="rev-top">
           <span class="rev-avatar" style="background:#e37400">A</span>
           <span class="rev-id">
@@ -834,7 +836,7 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
         <span class="rev-date">Temmuz 2025</span>
       </article>
 
-      <article class="review-card reveal reveal-d1">
+      <article class="review-card">
         <div class="rev-top">
           <span class="rev-avatar" style="background:#9334e6">B</span>
           <span class="rev-id">
@@ -854,7 +856,7 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
         <span class="rev-date">Ağustos 2024</span>
       </article>
 
-      <article class="review-card reveal reveal-d2">
+      <article class="review-card">
         <div class="rev-top">
           <span class="rev-avatar" style="background:#1d6e78">S</span>
           <span class="rev-id">
@@ -873,6 +875,87 @@ footer h4{color:var(--white);font-size:.8rem;letter-spacing:.22em;text-transform
         <p class="rev-text">Sezon başında gittik, çok kalabalık değildi, biz de zaten bunu istiyorduk. Oda beklediğimden ferahtı, banyo tertemizdi. Restoranda akşam yemeği de yedik, ev yemeği tadındaydı. Küçük ama ilgi ve samimiyeti beş yıldızlık bir otel. Kesinlikle yine geliriz.</p>
         <span class="rev-date">Haziran 2025</span>
       </article>
+
+      <article class="review-card">
+        <div class="rev-top">
+          <span class="rev-avatar" style="background:#0b8043">H</span>
+          <span class="rev-id">
+            <span class="rev-name">Hakan Çelik</span>
+            <span class="rev-sub">Yerel Rehber · 64 yorum</span>
+          </span>
+          <svg class="rev-gicon" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+        </div>
+        <div class="rev-stars" role="img" aria-label="5 yıldız">
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <p class="rev-text">Akşam yemeğini terasta yedik, balık ve meze çok tazeydi; manzara eşliğinde keyifli bir akşamdı. Sabah kahvaltısı da serpme ve oldukça zengindi. Personel güler yüzlü, oda temizliği günlük yapıldı. Avşa'da hem konum hem hizmet olarak gönül rahatlığıyla tercih edilir.</p>
+        <span class="rev-date">Ağustos 2025</span>
+      </article>
+
+      <article class="review-card">
+        <div class="rev-top">
+          <span class="rev-avatar" style="background:#a142f4">D</span>
+          <span class="rev-id">
+            <span class="rev-name">Derya Korkmaz</span>
+            <span class="rev-sub">15 yorum · 3 fotoğraf</span>
+          </span>
+          <svg class="rev-gicon" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+        </div>
+        <div class="rev-stars" role="img" aria-label="5 yıldız">
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <p class="rev-text">Balayı için seçtik ve hiç pişman olmadık. Oda ferah, yatak çok rahattı, balkondan deniz görünüyordu. Sabah kahvaltısında her şey tazeydi, çayı da demliydi. Resepsiyon ilgili, sorduğumuz her şeye yardımcı oldular. Sessiz ve huzurlu bir tatil isteyenlere kesinlikle öneririm.</p>
+        <span class="rev-date">Temmuz 2025</span>
+      </article>
+
+      <article class="review-card">
+        <div class="rev-top">
+          <span class="rev-avatar" style="background:#c5221f">O</span>
+          <span class="rev-id">
+            <span class="rev-name">Okan Şimşek</span>
+            <span class="rev-sub">28 yorum</span>
+          </span>
+          <svg class="rev-gicon" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+        </div>
+        <div class="rev-stars" role="img" aria-label="5 yıldız">
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <p class="rev-text">Konum tam isabet; iskeleye ve çarşıya yürüyerek gittik, araç derdi olmadı. Otopark olması yine de güzel bir ayrıntı. Oda beklediğimden büyüktü, klima sıcak günlerde çok iş gördü. Akşam otelin terasında oturmak çok keyifliydi. Fiyatına göre fazlasıyla memnun kaldık.</p>
+        <span class="rev-date">Eylül 2025</span>
+      </article>
+
+      <article class="review-card">
+        <div class="rev-top">
+          <span class="rev-avatar" style="background:#1a73e8">F</span>
+          <span class="rev-id">
+            <span class="rev-name">Fatma Yılmaz</span>
+            <span class="rev-sub">19 yorum</span>
+          </span>
+          <svg class="rev-gicon" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+        </div>
+        <div class="rev-stars" role="img" aria-label="5 yıldız">
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path class="gstar-full" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <p class="rev-text">Annemle birlikte kaldık, ikimiz de çok memnun kaldık. Oda sıcak ve temizdi, banyoda su basıncı gayet iyiydi. Serpme kahvaltıda reçeller ev yapımıydı, çok beğendik. Çalışanlar samimi ve yardımseverdi. Avşa'da huzurlu, butik bir otel arayanlar için tam aradığınız yer.</p>
+        <span class="rev-date">Haziran 2025</span>
+      </article>
+     </div>
     </div>
   </div>
 </section>
@@ -1061,6 +1144,16 @@ const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
 }, {threshold: .15});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Misafir yorumları — kesintisiz akan şerit için kartları bir kez çoğalt (seamless loop)
+const reviewsTrack = document.getElementById('reviewsTrack');
+if (reviewsTrack) {
+  reviewsTrack.querySelectorAll('.review-card').forEach(card => {
+    const clone = card.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    reviewsTrack.appendChild(clone);
+  });
+}
 
 // Google Ads — WhatsApp tıklaması conversion
 function gtag_report_conversion(url) {
