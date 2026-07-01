@@ -9,6 +9,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 COPY index.html /usr/share/nginx/html/index.html
 COPY assets/ /usr/share/nginx/html/assets/
+COPY blog/ /usr/share/nginx/html/blog/
 COPY sitemap.xml /usr/share/nginx/html/sitemap.xml
 COPY robots.txt /usr/share/nginx/html/robots.txt
 COPY favicon.ico /usr/share/nginx/html/favicon.ico
