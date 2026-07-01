@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Avşa Adası'na ne zaman gidilir kapağı">
+  <defs>
+    <linearGradient id="nBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d2433"/>
+      <stop offset="1" stop-color="#1d6e78"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#nBg)"/>
+  <circle cx="1440" cy="150" r="230" fill="none" stroke="#e9dfcf" stroke-opacity="0.14" stroke-width="2"/>
+  <circle cx="1440" cy="150" r="150" fill="none" stroke="#e9dfcf" stroke-opacity="0.10" stroke-width="2"/>
+  <!-- büyük güneş -->
+  <g transform="translate(1240,300)">
+    <g stroke="#c2913f" stroke-width="8" stroke-linecap="round" stroke-opacity="0.9">
+      <line x1="0" y1="-135" x2="0" y2="-170"/>
+      <line x1="0" y1="135" x2="0" y2="170"/>
+      <line x1="-135" y1="0" x2="-170" y2="0"/>
+      <line x1="135" y1="0" x2="170" y2="0"/>
+      <line x1="-95" y1="-95" x2="-120" y2="-120"/>
+      <line x1="95" y1="95" x2="120" y2="120"/>
+      <line x1="95" y1="-95" x2="120" y2="-120"/>
+      <line x1="-95" y1="95" x2="-120" y2="120"/>
+    </g>
+    <circle r="96" fill="#c2913f"/>
+  </g>
+  <!-- takvim -->
+  <g transform="translate(1080,560)">
+    <rect x="0" y="0" width="230" height="200" rx="16" fill="#ffffff"/>
+    <rect x="0" y="0" width="230" height="52" rx="16" fill="#1d6e78"/>
+    <rect x="0" y="36" width="230" height="16" fill="#1d6e78"/>
+    <rect x="42" y="-14" width="14" height="40" rx="7" fill="#c2913f"/>
+    <rect x="174" y="-14" width="14" height="40" rx="7" fill="#c2913f"/>
+    <g fill="#2f9aa6">
+      <circle cx="42" cy="92" r="11"/><circle cx="88" cy="92" r="11"/><circle cx="134" cy="92" r="11"/><circle cx="180" cy="92" r="11"/>
+      <circle cx="42" cy="136" r="11"/><circle cx="88" cy="136" r="11"/>
+    </g>
+    <circle cx="134" cy="136" r="15" fill="#c2913f"/>
+    <g fill="#2f9aa6"><circle cx="180" cy="136" r="11"/></g>
+  </g>
+  <!-- deniz -->
+  <path d="M0 780 Q 400 745 800 780 T 1600 780 L1600 1000 L0 1000 Z" fill="#2f9aa6" fill-opacity="0.85"/>
+  <path d="M0 840 Q 420 805 800 840 T 1600 840 L1600 1000 L0 1000 Z" fill="#0d2433" fill-opacity="0.4"/>
+  <!-- metin -->
+  <g>
+    <rect x="120" y="470" width="60" height="3" fill="#c2913f"/>
+    <text x="196" y="482" font-family="Manrope, Arial, sans-serif" font-size="30" letter-spacing="9" fill="#e9dfcf" font-weight="700">EN İYİ ZAMAN</text>
+    <g font-family="Georgia, 'Times New Roman', serif">
+      <text x="118" y="592" font-size="104" fill="#ffffff" font-weight="500">Ne Zaman</text>
+      <text x="118" y="712" font-size="104" fill="#e9dfcf" font-style="italic" font-weight="500">Gidilir?</text>
+    </g>
+    <text x="122" y="900" font-family="Manrope, Arial, sans-serif" font-size="26" letter-spacing="6" fill="#e9dfcf" fill-opacity="0.75" font-weight="600">GRAND AVŞA HOTEL</text>
+  </g>
+</svg>

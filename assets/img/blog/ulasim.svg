@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Avşa Adası ulaşım rehberi kapağı">
+  <defs>
+    <linearGradient id="uBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d2433"/>
+      <stop offset="1" stop-color="#1d6e78"/>
+    </linearGradient>
+    <linearGradient id="uSea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2f9aa6"/>
+      <stop offset="1" stop-color="#1d6e78"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#uBg)"/>
+  <!-- dekoratif halkalar -->
+  <circle cx="1440" cy="150" r="230" fill="none" stroke="#e9dfcf" stroke-opacity="0.14" stroke-width="2"/>
+  <circle cx="1440" cy="150" r="150" fill="none" stroke="#e9dfcf" stroke-opacity="0.10" stroke-width="2"/>
+  <!-- güneş -->
+  <circle cx="1230" cy="250" r="66" fill="#c2913f" fill-opacity="0.92"/>
+  <!-- rota (noktalı yay) -->
+  <path d="M250 470 Q 720 250 1120 470" fill="none" stroke="#e9dfcf" stroke-opacity="0.55" stroke-width="4" stroke-dasharray="4 20" stroke-linecap="round"/>
+  <!-- kalkış pini -->
+  <g transform="translate(232,430)">
+    <path d="M18 0C8 0 0 8 0 18c0 13 18 34 18 34s18-21 18-34C36 8 28 0 18 0z" fill="#e9dfcf"/>
+    <circle cx="18" cy="18" r="7" fill="#0d2433"/>
+  </g>
+  <!-- deniz -->
+  <path d="M0 720 Q 400 680 800 720 T 1600 720 L1600 1000 L0 1000 Z" fill="url(#uSea)"/>
+  <path d="M0 780 Q 420 745 800 780 T 1600 780 L1600 1000 L0 1000 Z" fill="#0d2433" fill-opacity="0.35"/>
+  <!-- vapur -->
+  <g transform="translate(980,560)">
+    <rect x="70" y="-70" width="150" height="70" rx="8" fill="#e9dfcf"/>
+    <rect x="95" y="-56" width="26" height="30" rx="3" fill="#1d6e78"/>
+    <rect x="135" y="-56" width="26" height="30" rx="3" fill="#1d6e78"/>
+    <rect x="175" y="-56" width="26" height="30" rx="3" fill="#1d6e78"/>
+    <rect x="120" y="-108" width="16" height="40" fill="#c2913f"/>
+    <path d="M0 0 L300 0 L262 74 L38 74 Z" fill="#ffffff"/>
+    <circle cx="70" cy="37" r="10" fill="#2f9aa6"/>
+    <circle cx="115" cy="37" r="10" fill="#2f9aa6"/>
+    <circle cx="160" cy="37" r="10" fill="#2f9aa6"/>
+    <circle cx="205" cy="37" r="10" fill="#2f9aa6"/>
+  </g>
+  <!-- martılar -->
+  <path d="M330 250 q 22 -20 44 0 q 22 -20 44 0" fill="none" stroke="#e9dfcf" stroke-opacity="0.7" stroke-width="4" stroke-linecap="round"/>
+  <path d="M470 200 q 16 -15 32 0 q 16 -15 32 0" fill="none" stroke="#e9dfcf" stroke-opacity="0.55" stroke-width="3" stroke-linecap="round"/>
+  <!-- metin -->
+  <g font-family="Georgia, 'Times New Roman', serif">
+    <rect x="120" y="560" width="60" height="3" fill="#c2913f"/>
+    <text x="196" y="572" font-family="Manrope, Arial, sans-serif" font-size="30" letter-spacing="9" fill="#e9dfcf" font-weight="700">ULAŞIM REHBERİ</text>
+    <text x="118" y="668" font-size="104" fill="#ffffff" font-weight="500">Avşa'ya Nasıl</text>
+    <text x="118" y="788" font-size="104" fill="#e9dfcf" font-style="italic" font-weight="500">Gidilir?</text>
+    <text x="122" y="900" font-family="Manrope, Arial, sans-serif" font-size="26" letter-spacing="6" fill="#e9dfcf" fill-opacity="0.75" font-weight="600">GRAND AVŞA HOTEL</text>
+  </g>
+</svg>
